@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block nav %}
+{#    <li class="nav-item">#}
+{#          <a class="nav-link" aria-current="page" href="{% url 'task_add' %}">Add Task</a>#}
+{#        </li>#}
+{#    <li class="nav-item">#}
+{#          <a class="nav-link" aria-current="page" href="{% url 'task_edit' task.pk %}">Edit Task</a>#}
+{#        </li>#}
+{#    <li class="nav-item">#}
+{#          <a class="nav-link" aria-current="page" href="{% url 'task_delete' task.pk %}">Delete Task</a>#}
+{#        </li>#}
+{% endblock %}
+{% block content %}
+    <div class="card text-center">
+          <div class="card-header">
+            Название: {{ task.title }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Статус: {{ task.get_status_display }}</h5>
+            <p class="card-text" style="white-space: pre-wrap">{{ task.details }} </p>
+{#            <a href="#" class="btn btn-primary">Go somewhere</a>#}
+          </div>
+          <div class="card-footer text-muted">
+            Дата выполнения: {{ task.deadline }}
+          </div>
+    </div>
+{% endblock %}
