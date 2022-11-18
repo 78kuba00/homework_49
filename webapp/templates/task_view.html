@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block nav %}
     <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'task_add' %}">Add Task</a>
+          <a class="btn btn-success" aria-current="page" href="{% url 'task_add' %}">Add Task</a>
         </li>
     <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'task_edit' task.pk %}">Edit Task</a>
+          <a class="btn btn-primary" aria-current="page" href="{% url 'task_edit' task.pk %}">Edit Task</a>
         </li>
     <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{% url 'task_delete' task.pk %}">Delete Task</a>
+          <a class="btn btn-danger" aria-current="page" href="{% url 'task_delete' task.pk %}">Delete Task</a>
         </li>
 {% endblock %}
 {% block content %}
     <div class="card text-center">
-          <div class="card-header">
+          <h5 class="card-header">
             Задание: {{ task.summary }}
-          </div>
+          </h5>
           <div class="card-body">
             <p class="card-text" style="white-space: pre-wrap">Описание: {{ task.description }} </p>
             <p class="card-text" style="white-space: pre-wrap">Статус: {{ task.status }} </p>

@@ -1,6 +1,9 @@
 {% csrf_token %}
+{% for error in form.non_field_errors %}
+    <p class="text-danger">{{ error }}</p>
+{% endfor %}
 
-<label class="form-label">type:</label>
+<label class="form-label">Тип: </label>
         <select class="form-select" name="type">
             {% for type in types %}
                 <option
@@ -12,7 +15,7 @@
         </select>
         <br/>
 
-<label class="form-label">Статус:</label>
+<label class="form-label">Статус: </label>
         <select class="form-select" name="status">
             {% for status in statuses %}
                 <option

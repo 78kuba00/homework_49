@@ -12,6 +12,7 @@ class TrackerType(models.Model):
 
     def __str__(self):
         return f'{self.pk}. {self.title}'
+
 class Tracker(models.Model):
     summary = models.CharField(max_length=200, null=False, blank=False, verbose_name='Краткое описание')
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Полное описание')
