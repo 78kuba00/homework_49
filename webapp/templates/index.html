@@ -12,22 +12,26 @@
 {% endblock %}
 {% block content %}
     <h1>Задачи:</h1>
+    <form action="" method=""POST>
+    {% csrf_token %}
+     <p><input type="submit" class="btn btn-danger" value="Delete"></p>
         <div class="row">
             {% for task in tasks %}
                 <div class="col-6 mb-3">
                     <div class="card">
-                       <h5 class="card-header">Название: <a href="{% url 'task_view' task.pk %}">{{ task.summary }}</a></h5>
+                       <h5 class="card-header"><input class="form-check-input" name="tasks" type="checkbox" value="{{ task.pk }}"> Название: <a href="{% url 'task_view' task.pk %}">{{ task.summary.title }}</a></h5>
                        <div class="card-body">
-                           <h5 class="card-title">Тип: {{ task.type }}</h5>
-                           <h5 class="card-title">Статус: {{ task.status }}</h5>
+                           <h5 class="card-title">Тип: {{ task.type.title }}</h5>
+                           <h5 class="card-title">Статус: {{ task.status.title }}</h5>
                            <p class="card-text">{{ task.created_at|date:"d F Y"|default:'-' }}</p>
-                           <form action="{% url 'index' %}?id={{ task.id }}" method="POST">
-                                {% csrf_token %}
-                                <input type="submit" value="delete" class="btn btn-primary">
-                           </form>
+{#                           <form action="{% url 'index' %}?id={{ task.id }}" method="POST">#}
+{#                                {% csrf_token %}#}
+{#                                <input type="submit" value="delete" class="btn btn-primary">#}
+{#                           </form>#}
                        </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
+    </form>
 {% endblock %}

@@ -2,35 +2,44 @@
 {% for error in form.non_field_errors %}
     <p class="text-danger">{{ error }}</p>
 {% endfor %}
+{% for field in form %}
+{#<label class="form-label">Тип: </label>#}
+    <p><label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label></p>
+    <p>{{ field }}</p>
+    {% for error in field.errors %}
+        <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+{% endfor %}
+<p><input type="submit" class="btn btn-primary" value="{{ button_text }}"></p>
 
-<label class="form-label">Тип: </label>
-        <select class="form-select" name="type">
-            {% for type in types %}
-                <option
-                    {% if task.type == type.pk %}
-                        selected
-                    {% endif %}
-                        value="{{ type.pk }}">{{ type.title }}</option>
-            {% endfor %}
-        </select>
-        <br/>
+{#        <select class="form-select" name="type">#}
+{#            {% for type in types %}#}
+{#                <option#}
+{#                    {% if task.type == type.pk %}#}
+{#                        selected#}
+{#                    {% endif %}#}
+{#                        value="{{ type.pk }}">{{ type.title }}</option>#}
+{#            {% endfor %}#}
+{#        </select>#}
+{#        <br/>#}
+{##}
+{#<label class="form-label">Статус: </label>#}
+{#        <select class="form-select" name="status">#}
+{#            {% for status in statuses %}#}
+{#                <option#}
+{#                    {% if task.status == status.pk %}#}
+{#                        selected#}
+{#                    {% endif %}#}
+{#                        value="{{ status.pk }}">{{ status.title }}</option>#}
+{#            {% endfor %}#}
+{#        </select>#}
+{#        <br/>#}
+{#        <label class="form-label">Название:</label>#}
+{#        <input class="form-control" type="text" name="summary" value="{{ task.summary }}" required>#}
+{#        <br/>#}
+{#        <label class="form-label">Содержание:</label>#}
+{#        <textarea class="form-control" name="description">{{ task.description }}</textarea>#}
+{#        <br/>#}
+{#    <input class="btn btn-success" type="submit" value="{{ button_text }}">#}
+{#</html>#}
 
-<label class="form-label">Статус: </label>
-        <select class="form-select" name="status">
-            {% for status in statuses %}
-                <option
-                    {% if task.status == status.pk %}
-                        selected
-                    {% endif %}
-                        value="{{ status.pk }}">{{ status.title }}</option>
-            {% endfor %}
-        </select>
-        <br/>
-        <label class="form-label">Название:</label>
-        <input class="form-control" type="text" name="summary" value="{{ task.summary }}" required>
-        <br/>
-        <label class="form-label">Содержание:</label>
-        <textarea class="form-control" name="description">{{ task.description }}</textarea>
-        <br/>
-    <input class="btn btn-success" type="submit" value="{{ button_text }}">
-</html>

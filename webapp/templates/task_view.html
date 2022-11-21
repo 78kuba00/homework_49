@@ -16,9 +16,9 @@
             Задание: {{ task.summary }}
           </h5>
           <div class="card-body">
-            <p class="card-text" style="white-space: pre-wrap">Описание: {{ task.description }} </p>
-            <p class="card-text" style="white-space: pre-wrap">Статус: {{ task.status }} </p>
-            <p class="card-text" style="white-space: pre-wrap">Тип: {{ task.type }} </p>
+            <p class="card-text" style="white-space: pre-wrap">Описание: {{ task.description.title }} </p>
+            <p class="card-text" style="white-space: pre-wrap">Статус: {{ task.status.title }} </p>
+            <p class="card-text" style="white-space: pre-wrap">Тип: {{ task.type.title }} </p>
 {#            <a href="#" class="btn btn-primary">Go somewhere</a>#}
           </div>
           <div class="card-footer text-muted">
