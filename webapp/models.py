@@ -14,13 +14,16 @@ class TrackerType(models.Model):
     def __str__(self):
         return self.title
 
+# class TrackerTypeTag(models.Model):
+#     tag = models.ForeignKey('webapp.TrackerType', related_name='tag_types', on_delete=models.CASCADE, verbose_name='Тег')
+#
 
 
 class Tracker(models.Model):
     summary = models.CharField(max_length=200, null=False, blank=False, verbose_name='Краткое описание')
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Полное описание')
     status = models.ForeignKey('webapp.TrackerStatus', related_name='tasks', on_delete=models.PROTECT, verbose_name='Статус', null=True)
-    type_old = models.ForeignKey('webapp.TrackerType', related_name='tasks_set', on_delete=models.PROTECT, verbose_name='Тип')
+    # type_old = models.ForeignKey('webapp.TrackerType', related_name='tasks_set', on_delete=models.PROTECT, verbose_name='Тип')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     type = models.ManyToManyField('webapp.TrackerType', related_name='tasks_new', blank=True)

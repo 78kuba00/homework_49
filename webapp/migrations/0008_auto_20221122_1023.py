@@ -2,16 +2,16 @@
 
 from django.db import migrations
 
-def transfer_tags(apps, schema_editor):
-    Tracker = apps.get_model('webapp.Tracker')
-    for tracker in Tracker.objects.all():
-        tracker.type.set(tracker.type_old.all())
-
-
-def rollback_transfer(apps, schema_editor):
-    Tracker = apps.get_model('webapp.Tracker')
-    for tracker in Tracker.objects.all():
-        tracker.type_old.set(tracker.type.all())
+# def transfer_tags(apps, schema_editor):
+#     Tracker = apps.get_model('webapp.Tracker')
+#     for tracker in Tracker.objects.all():
+#         tracker.type.set(tracker.type_old.all())
+#
+#
+# def rollback_transfer(apps, schema_editor):
+#     Tracker = apps.get_model('webapp.Tracker')
+#     for tracker in Tracker.objects.all():
+#         tracker.type_old.set(tracker.type.all())
 
 class Migration(migrations.Migration):
 
@@ -20,5 +20,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(transfer_tags, rollback_transfer)
+        # migrations.RunPython(transfer_tags, rollback_transfer)
     ]

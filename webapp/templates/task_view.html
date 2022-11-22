@@ -18,7 +18,7 @@
           <div class="card-body">
             <p class="card-text" style="white-space: pre-wrap">Описание: {{ task.description.title }} </p>
             <p class="card-text" style="white-space: pre-wrap">Статус: {{ task.status.title }} </p>
-            <p class="card-text" style="white-space: pre-wrap">Тип: {{ task.type.title }} </p>
+            <p class="card-text" style="white-space: pre-wrap">Тип: {% for t in task.type.all %}{{ t}}{% endfor %} </p>
 {#            <a href="#" class="btn btn-primary">Go somewhere</a>#}
           </div>
           <div class="card-footer text-muted">

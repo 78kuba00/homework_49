@@ -32,7 +32,9 @@ class CreateView(TemplateView):
     def post(self, request, *args, **kwargs):
         form = TaskForm(data=request.POST)
         if form.is_valid():
+            types = form.cleaned_data.pop('type')
             task = Tracker.objects.create(**form.cleaned_data)
+            task.type.set(types)
             return redirect('task_view', pk=task.pk)
         else:
             context = self.get_context_data(**kwargs)
@@ -46,9 +48,9 @@ class EditView(View):
             'summary': task.summary,
             'description': task.description,
             'status': task.status,
-            'type': task.type
+            'type': task.type.all()
         })
-        return render(request, 'task_edit.html', {'form': form, 'task': task})
+        return render(request, 'task_edit.html', {'form': form})
 
     def post (self, request, *args, **kwargs):
         task = get_object_or_404(Tracker, pk=kwargs['pk'])
@@ -59,9 +61,10 @@ class EditView(View):
             task.status = form.cleaned_data['status']
             task.type = form.cleaned_data['type']
             task.save()
+            task.type.set(form.cleaned_data['type'])
             return redirect('task_view', pk=task.pk)
         else:
-            return render(request, 'task_edit.html', {'form': form, 'task': task})
+            return render(request, 'task_edit.html', {'form': form})
 
 class DeleteView(View):
    def get(self, request, *args, **kwargs):
