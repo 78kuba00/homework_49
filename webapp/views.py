@@ -12,7 +12,7 @@ class IndexView(TemplateView):
         return context
     def post(self, request, *args, **kwargs):
         for task_pk in request.POST.getlist('tasks', []):
-            Tracker.object.get(pk=task_pk).delete()
+            Tracker.objects.get(pk=task_pk).delete()
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
 
