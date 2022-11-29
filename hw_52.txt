@@ -3,7 +3,7 @@ from django.db.models import Q, F, Count
 import datetime
 today = datetime.datetime.today()
 delta = datetime.timedelta(days=20)
-past = today - delta
+past = today - delta (не работает)
 
 q_1 = Q(created_at__date__lt='2022-11-28')
 q_2 = Q(created_at__date__gt='2022-10-28')
