@@ -3,90 +3,42 @@
   "model": "webapp.trackerstatus",
   "pk": 1,
   "fields": {
-    "title": "new - Новый"
+    "title": "new"
   }
 },
 {
   "model": "webapp.trackerstatus",
   "pk": 2,
   "fields": {
-    "title": "In Progress - В процессе"
+    "title": "In Progress"
   }
 },
 {
   "model": "webapp.trackerstatus",
   "pk": 3,
   "fields": {
-    "title": "Done - Выполнено"
+    "title": "Done"
   }
 },
 {
   "model": "webapp.trackertype",
   "pk": 1,
   "fields": {
-    "title": "Task - задача"
+    "title": "Task"
   }
 },
 {
   "model": "webapp.trackertype",
   "pk": 2,
   "fields": {
-    "title": "Bug - ошибка"
+    "title": "Bug"
   }
 },
 {
   "model": "webapp.trackertype",
   "pk": 3,
   "fields": {
-    "title": "Enhancement - улучшение"
-  }
-},
-{
-  "model": "webapp.tracker",
-  "pk": 1,
-  "fields": {
-    "summary": "Play Cod",
-    "description": "reach LVL 55",
-    "status": 1,
-    "type": 1,
-    "created_at": "2022-11-17T15:27:26.426Z",
-    "updated_at": "2022-11-17T15:27:26.426Z"
-  }
-},
-{
-  "model": "webapp.tracker",
-  "pk": 2,
-  "fields": {
-    "summary": "Have breakfest",
-    "description": "Eat breakfast everyday",
-    "status": 2,
-    "type": 3,
-    "created_at": "2022-11-17T15:29:16.666Z",
-    "updated_at": "2022-11-17T15:29:16.666Z"
-  }
-},
-{
-  "model": "webapp.tracker",
-  "pk": 3,
-  "fields": {
-    "summary": "Fix enternet at Home",
-    "description": "",
-    "status": 3,
-    "type": 2,
-    "created_at": "2022-11-17T15:29:50.060Z",
-    "updated_at": "2022-11-17T15:29:50.060Z"
-  }
-},
-{
-  "model": "webapp.tracker",
-  "pk": 4,
-  "fields": {
-    "summary": "Become a programmer",
-    "description": "",
-    "status": 2,
-    "type": 3,
-    "created_at": "2022-11-17T15:30:26.673Z",
-    "updated_at": "2022-11-17T15:30:26.673Z"
+    "title": "Enhancement"
   }
 },
 {
@@ -95,10 +47,211 @@
   "fields": {
     "summary": "Drink Beer",
     "description": "SROCHNO nakaldyritsya",
-    "status": 1,
-    "type": 1,
     "created_at": "2022-11-17T15:30:57.631Z",
-    "updated_at": "2022-11-17T15:30:57.631Z"
+    "updated_at": "2022-11-25T08:47:14.323Z",
+    "status": [
+      1
+    ],
+    "type": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 11,
+  "fields": {
+    "summary": "Finish homewrok_49",
+    "description": "Webinar 37 is the best webinar in the world",
+    "created_at": "2022-11-18T05:00:56.563Z",
+    "updated_at": "2022-11-25T08:44:42.212Z",
+    "status": [
+      1
+    ],
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 12,
+  "fields": {
+    "summary": "Have a fight",
+    "description": "Lets fight for our lives",
+    "created_at": "2022-11-18T05:18:21.470Z",
+    "updated_at": "2022-11-25T08:48:59.190Z",
+    "status": [
+      1,
+      2
+    ],
+    "type": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 13,
+  "fields": {
+    "summary": "BaseForm",
+    "description": "Im sick of this base and form",
+    "created_at": "2022-11-18T09:51:35.504Z",
+    "updated_at": "2022-11-18T09:51:35.504Z",
+    "status": [],
+    "type": []
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 15,
+  "fields": {
+    "summary": "Task 141",
+    "description": "TASKINBWOS",
+    "created_at": "2022-11-18T10:16:57.579Z",
+    "updated_at": "2022-11-28T17:01:39.817Z",
+    "status": [
+      3
+    ],
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 16,
+  "fields": {
+    "summary": "Play Task",
+    "description": "kjglciblfdibf",
+    "created_at": "2022-11-21T16:43:13.821Z",
+    "updated_at": "2022-11-28T17:03:06.553Z",
+    "status": [
+      3
+    ],
+    "type": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 25,
+  "fields": {
+    "summary": "Task 141",
+    "description": "ROKOMAKAFOOO\r\nFrrestyler",
+    "created_at": "2022-11-22T13:56:49.336Z",
+    "updated_at": "2022-11-22T13:57:07.722Z",
+    "status": [],
+    "type": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 26,
+  "fields": {
+    "summary": "Warzone 2.0",
+    "description": "Lets go fast af boyyyyiiiii",
+    "created_at": "2022-11-25T07:03:01.257Z",
+    "updated_at": "2022-11-25T07:11:21.061Z",
+    "status": [],
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 27,
+  "fields": {
+    "summary": "Have a fight",
+    "description": "sacsa",
+    "created_at": "2022-11-25T07:07:07.976Z",
+    "updated_at": "2022-11-25T07:08:03.780Z",
+    "status": [],
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 28,
+  "fields": {
+    "summary": "Kill yourself",
+    "description": "Kill everyone! I MEAN EVERYONE",
+    "created_at": "2022-11-25T07:33:15.597Z",
+    "updated_at": "2022-11-25T07:33:15.597Z",
+    "status": [],
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 29,
+  "fields": {
+    "summary": "Play Cod 3",
+    "description": "nkkknkjgkg",
+    "created_at": "2022-11-25T07:38:30.986Z",
+    "updated_at": "2022-11-28T17:03:26.779Z",
+    "status": [
+      3
+    ],
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 31,
+  "fields": {
+    "summary": "RocknRoll",
+    "description": "",
+    "created_at": "2022-11-25T08:18:35.718Z",
+    "updated_at": "2022-11-25T08:18:35.718Z",
+    "status": [],
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 35,
+  "fields": {
+    "summary": "Have a fight",
+    "description": "ROCOMAKAFOOO",
+    "created_at": "2022-11-25T08:44:13.128Z",
+    "updated_at": "2022-11-25T08:44:13.128Z",
+    "status": [
+      1
+    ],
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 36,
+  "fields": {
+    "summary": "gdjasdaskdj",
+    "description": "ashaflsfaspgishgaisdhgsisdakvdsvisavbsavidb",
+    "created_at": "2022-11-25T10:31:15.423Z",
+    "updated_at": "2022-11-25T10:31:15.423Z",
+    "status": [
+      1,
+      2
+    ],
+    "type": [
+      2
+    ]
   }
 },
 {
@@ -106,7 +259,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$390000$EJsCnpL58et4S68O78pvEZ$C77JcZslKmoswsd5u9wBiXmUC9Jf7YTPyPTY8YsJOt0=",
-    "last_login": "2022-11-17T15:00:00.022Z",
+    "last_login": "2022-11-25T08:26:54.999Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",

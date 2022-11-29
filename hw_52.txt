@@ -1,0 +1,21 @@
+q_1 = Q(created_at__date__lt='2022-11-28')
+q_2 = Q(created_at__date__gt='2022-10-28')
+q_3 = Q(status__title__iexact='done')
+Tracker.objects.filter(q_1, q_2, q_3)
+
+
+q_4 = Q(type__title__iexact='Bug')
+q_5 = Q(type__title__iexact='Enhancement')
+Tracker.objects.filter(q_1, q_2, q_5)
+Tracker.objects.filter(q_1, q_2, q_5, q_4)
+
+q_6 = Q(type__title__iexact='Task')
+Tracker.objects.filter(q_1, q_2, q_6, q_4)
+Tracker.objects.filter((q_1 | q_2) & (q_4 | q_3))
+
+q_7 = Q(summary__iexact=F("type__bug"))
+q_7 = Q(summary__iexact="bug")
+q_8 = Q(type__title__iexact='bug')
+q_9 = Q(status__title__iexact='done')
+
+Tracker.objects.filter(q_7 | (q_8 & ~q_9))
