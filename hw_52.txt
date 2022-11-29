@@ -1,3 +1,6 @@
+from webapp.models import Tracker, TrackerType, TrackerStatus
+from django.db.models import Q, F, Count
+
 q_1 = Q(created_at__date__lt='2022-11-28')
 q_2 = Q(created_at__date__gt='2022-10-28')
 q_3 = Q(status__title__iexact='done')
