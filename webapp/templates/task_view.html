@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block nav %}
     <li class="nav-item">
-          <a class="btn btn-success" aria-current="page" href="{% url 'task_add' %}">Add Task</a>
+          <a class="btn btn-success" aria-current="page" href="{% url 'task_add' %}">Добавить</a>
         </li>
     <li class="nav-item">
-          <a class="btn btn-primary" aria-current="page" href="{% url 'task_edit' task.pk %}">Edit Task</a>
+          <a class="btn btn-primary" aria-current="page" href="{% url 'task_edit' task.pk %}">Изменить</a>
         </li>
     <li class="nav-item">
-          <a class="btn btn-danger" aria-current="page" href="{% url 'task_delete' task.pk %}">Delete Task</a>
+          <a class="btn btn-danger" aria-current="page" href="{% url 'task_delete' task.pk %}">Удалить</a>
         </li>
 {% endblock %}
 {% block content %}

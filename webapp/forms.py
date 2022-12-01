@@ -17,3 +17,6 @@ class TaskForm(forms.ModelForm):
         fields = ['summary', 'description', 'status', 'type']
         widgets = {'status': widgets.CheckboxInput, 'type': widgets.CheckboxSelectMultiple}
         # type = {'type': widgets.CheckboxSelectMultiple}
+
+class SimpleSearchForm(forms.Form):
+    search = forms.CharField(max_length=50, required=False, label='Найти')

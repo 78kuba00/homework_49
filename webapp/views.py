@@ -1,28 +1,47 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View, TemplateView
 from webapp.models import TrackerType, Tracker, TrackerStatus
-from webapp.forms import TaskForm
+from webapp.forms import TaskForm, SimpleSearchForm
+from django.db.models import Q
+from django.utils.http import urlencode
 
-from django.views.generic import TemplateView, RedirectView, FormView
+from django.views.generic import TemplateView, RedirectView, FormView, ListView
 from webapp.base_views import FormView as CustomFormView, ListView as CustomListView
 
-class IndexViews(CustomListView):
+class IndexViews(ListView):
     template_name = 'index.html'
+    context_object_name = 'tasks'
     model = Tracker
-    context_key = 'tasks'
+    ordering = ('-updated_at',)
+    paginate_by = 10
+    paginate_orphans = 2
 
-    def get_objects(self):
-        return Tracker.objects.order_by('-updated_at')
-    # template_name = 'index.html'
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['tasks'] = Tracker.objects.all()
-    #     return context
-    # def post(self, request, *args, **kwargs):
-    #     for task_pk in request.POST.getlist('tasks', []):
-    #         Tracker.objects.get(pk=task_pk).delete()
-    #     context = self.get_context_data(**kwargs)
-    #     return self.render_to_response(context)
+    def get(self, request, *args, **kwargs):
+        self.form = self.get_search_form()
+        self.search_value = self.get_search_value()
+        return super().get(request, *args, **kwargs)
+
+    def get_search_form(self):
+        return SimpleSearchForm(self.request.GET)
+
+    def get_search_value(self):
+        if self.form.is_valid():
+            return self.form.cleaned_data['search']
+        # return None
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.search_value:
+            query = Q(summary__icontains=self.search_value)| Q(description__icontains=self.search_value)
+            queryset = queryset.filter(query)
+        return queryset
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['form'] = self.form
+        if self.search_value:
+            context['query'] = urlencode({'search': self.search_value})
+            context['search'] = self.search_value
+        return context
 
 class TaskView(TemplateView):
     template_name = 'task_view.html'
