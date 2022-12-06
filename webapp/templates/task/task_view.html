@@ -19,7 +19,12 @@
             <p class="card-text" style="white-space: pre-wrap">Описание: {{ task.description.title }} </p>
             <p class="card-text" style="white-space: pre-wrap">Статус: {{ task.status.title }} </p>
             <p class="card-text" style="white-space: pre-wrap">Тип: {% for t in task.type.all %} {{ t}}{% endfor %} </p>
-{#            <a href="#" class="btn btn-primary">Go somewhere</a>#}
+          <h6>Проект:</h6>
+          {% for task in task.projects.all %}
+            <p>{{ task.project }}</p>
+            {% empty %}
+            <p>Проектов нет</p>
+          {% endfor %}
           </div>
           <div class="card-footer text-muted">
             Последнее обновления: {{ task.updated_at|date:"d F Y"|default:'-' }}

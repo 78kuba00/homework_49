@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views.generic import View
-from webapp.models import Tracker
+from webapp.models import Tracker, Project
 from webapp.forms import TaskForm, SimpleSearchForm
 from django.db.models import Q
 from django.utils.http import urlencode
 
-from django.views.generic import TemplateView, RedirectView, FormView, ListView
+from django.views.generic import TemplateView, RedirectView, FormView, ListView, DetailView, CreateView
 from .base_views import FormView as CustomFormView
 
 
@@ -44,43 +44,54 @@ class IndexViews(ListView):
             context['search'] = self.search_value
         return context
 
-class TaskView(TemplateView):
+class TaskView(DetailView):
     template_name = 'task/task_view.html'
+    model = Tracker
+    context_object_name = 'task'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['task'] = get_object_or_404(Tracker, pk=kwargs['pk'])
+        # task = self.object
+        # projects = task.project
+        # context['projects'] = projects
         return context
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['task'] = get_object_or_404(Tracker, pk=kwargs['pk'])
+    #     return context
 
 class MyRedirectView(RedirectView):
     url = 'https://ccbv.co.uk/projects/Django/4.1/django.views.generic.base/RedirectView/'
 
-class CreateView(CustomFormView):
+
+class TrackerForm:
+    pass
+
+
+class CreateView(CreateView):
     template_name = 'task/create.html'
+    model = Tracker
     form_class = TaskForm
 
-    def get_redirect_url(self):
-        return reverse('task_view', kwargs={'pk': self.task.pk})
-
-    def form_valid(self, form):
-        self.task = form.save()
-        return super().form_valid(form)
 
 class EditView(FormView):
     template_name = "task/task_edit.html"
     form_class = TaskForm
-
-    def get_object(self):
-        pk = self.kwargs.get('pk')
-        return get_object_or_404(Tracker, pk=pk)
+    task = None
 
     def dispatch(self, request, *args, **kwargs):
         self.task = self.get_object()
         return super().dispatch(request, *args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['task'] = self.task
-        return context
+    def get_object(self):
+        pk = self.kwargs.get('pk')
+        return get_object_or_404(Tracker, pk=pk)
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['task'] = self.task
+    #     return context
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

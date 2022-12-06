@@ -17,7 +17,7 @@
             {% for task in tasks %}
                 <div class="col-4 mb-3">
                     <div class="card">
-                       <h5 class="card-header"><input class="form-check-input" name="tasks" type="checkbox" value="{{ task.pk }}"> Название: <a href="{% url 'task_view' task.pk %}">{{ task.summary.title }}</a></h5>
+                       <h5 class="card-header"><input class="form-check-input" name="tasks" type="checkbox" value="{{ task.pk }}"> Название: <a href="{{ task.get_absolute_url }}">{{ task.summary.title }}</a></h5>
                        <div class="card-body">
                            <h5 class="card-title">Тип: {% for t in task.type.all %} {{ t }}{% endfor %}</h5>
                            <h5 class="card-title">Статус: {{ task.status.title }}</h5>

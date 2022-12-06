@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 # Create your models here.
 class TrackerStatus(models.Model):
@@ -23,6 +25,9 @@ class Tracker(models.Model):
     type = models.ManyToManyField('webapp.TrackerType', related_name='tasks_new')
     project = models.ForeignKey('webapp.Project', related_name='projects', on_delete=models.PROTECT, default=1, verbose_name='Проект')
 
+    def get_absolute_url(self):
+        return reverse('task_view', kwargs={'pk': self.pk})
+
     def __str__(self):
         return f'{self.pk}. {self.summary}'
 
@@ -33,4 +38,12 @@ class Project(models.Model):
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание')
 
     def __str__(self):
-        return f'{self.pk}. {self.title}'
+        return f'{self.title}'
+
+    def get_absolute_url(self):
+        return reverse('project_view', kwargs={'pk': self.pk})
+
+    class Meta:
+        db_table = 'projects'
+        verbose_name = 'Проект'
+        verbose_name_plural = 'Проекты'
