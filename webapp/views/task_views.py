@@ -1,15 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.views.generic import View, TemplateView
-from webapp.models import TrackerType, Tracker, TrackerStatus
+from django.views.generic import View
+from webapp.models import Tracker
 from webapp.forms import TaskForm, SimpleSearchForm
 from django.db.models import Q
 from django.utils.http import urlencode
 
 from django.views.generic import TemplateView, RedirectView, FormView, ListView
-from webapp.base_views import FormView as CustomFormView, ListView as CustomListView
+from .base_views import FormView as CustomFormView
+
 
 class IndexViews(ListView):
-    template_name = 'index.html'
+    template_name = 'task/index.html'
     context_object_name = 'tasks'
     model = Tracker
     ordering = ('-updated_at',)
@@ -44,7 +45,7 @@ class IndexViews(ListView):
         return context
 
 class TaskView(TemplateView):
-    template_name = 'task_view.html'
+    template_name = 'task/task_view.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['task'] = get_object_or_404(Tracker, pk=kwargs['pk'])
@@ -54,7 +55,7 @@ class MyRedirectView(RedirectView):
     url = 'https://ccbv.co.uk/projects/Django/4.1/django.views.generic.base/RedirectView/'
 
 class CreateView(CustomFormView):
-    template_name = 'create.html'
+    template_name = 'task/create.html'
     form_class = TaskForm
 
     def get_redirect_url(self):
@@ -65,7 +66,7 @@ class CreateView(CustomFormView):
         return super().form_valid(form)
 
 class EditView(FormView):
-    template_name = "task_edit.html"
+    template_name = "task/task_edit.html"
     form_class = TaskForm
 
     def get_object(self):
@@ -101,7 +102,7 @@ class EditView(FormView):
 class DeleteView(View):
     def get(self, request, *args, **kwargs):
         task = get_object_or_404(Tracker, pk=kwargs['pk'])
-        return render(request, 'task_delete.html', {'task': task})
+        return render(request, 'task/task_delete.html', {'task': task})
     def post(self, request, *args, **kwargs):
         task = get_object_or_404(Tracker, pk=kwargs['pk'])
         task.delete()
