@@ -1,5 +1,5 @@
 from django.contrib import admin
-from webapp.models import Tracker, TrackerType, TrackerStatus
+from webapp.models import Tracker, TrackerType, TrackerStatus, Project
 # Register your models here.
 # class TrackerAdmin(admin.ModelAdmin):
 #     list_display = ['id', 'summary', 'description']
@@ -19,3 +19,4 @@ from webapp.models import Tracker, TrackerType, TrackerStatus
 admin.site.register(Tracker)
 admin.site.register(TrackerStatus)
 admin.site.register(TrackerType)
+admin.site.register(Project)
