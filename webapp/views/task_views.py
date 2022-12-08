@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from webapp.models import Tracker, Project
 from webapp.forms import TaskForm, SimpleSearchForm
-from django.views.generic import TemplateView, View, DetailView, CreateView
+from django.views.generic import View, DetailView, CreateView
 from webapp.views import SearchView
 
 class IndexViews(SearchView):
@@ -27,7 +27,12 @@ class TaskView(DetailView):
     template_name = 'task/task_view.html'
     model = Tracker
 
-class CreateView(CreateView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['task'] = get_object_or_404(Tracker, pk=self.kwargs.get('pk'))
+        return context
+
+class TaskCreate(CreateView):
     template_name = 'task/create.html'
     model = Tracker
     form_class = TaskForm
@@ -40,7 +45,7 @@ class CreateView(CreateView):
         return reverse('project_view', kwargs={'pk': self.object.project.pk})
 
 
-class EditView(View):
+class TaskEdit(View):
     def get(self, request, *args, **kwargs):
         task = get_object_or_404(Tracker, pk=kwargs['pk'])
         form = TaskForm(instance=task)
@@ -53,10 +58,10 @@ class EditView(View):
             task = form.save()
             return redirect('task_view', pk=task.pk)
         else:
-            return render(request, 'task/task_edit.htmll', {'form': form, 'task': task})
+            return render(request, 'task/task_edit.html', {'form': form, 'task': task})
 
 
-class DeleteView(View):
+class TaskDelete(View):
     def get(self, request, *args, **kwargs):
         task = get_object_or_404(Tracker, pk=kwargs['pk'])
         return render(request, 'task/task_delete.html', {'task': task})

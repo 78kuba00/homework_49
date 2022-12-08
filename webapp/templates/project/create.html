@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+
+
+
 {% block content %}
-<h1>Добавить проект</h1>
+<h1>Create Project</h1>
 <form action="" method="POST">
-{% include 'partial/form.html' with button_text="Создать"%}
-{#    <input class="btn btn-success" type="submit" value="Create">#}
+    {% include 'partial/form.html' with button_text='Create' %}
 </form>
 {% endblock %}

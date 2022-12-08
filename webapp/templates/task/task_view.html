@@ -1,33 +1,19 @@
 {% extends 'base.html' %}
-{% block nav %}
-    <li class="nav-item">
-          <a class="btn btn-success" aria-current="page" href="{% url 'task_add' %}">Добавить</a>
-        </li>
-    <li class="nav-item">
-          <a class="btn btn-primary" aria-current="page" href="{% url 'task_edit' task.pk %}">Изменить</a>
-        </li>
-    <li class="nav-item">
-          <a class="btn btn-danger" aria-current="page" href="{% url 'task_delete' task.pk %}">Удалить</a>
-        </li>
-{% endblock %}
+
+
 {% block content %}
     <div class="card text-center">
-          <h5 class="card-header">
-            Задание: {{ task.summary }}
-          </h5>
-          <div class="card-body">
-            <p class="card-text" style="white-space: pre-wrap">Описание: {{ task.description.title }} </p>
-            <p class="card-text" style="white-space: pre-wrap">Статус: {{ task.status.title }} </p>
-            <p class="card-text" style="white-space: pre-wrap">Тип: {% for t in task.type.all %} {{ t}}{% endfor %} </p>
-          <h6>Проект:</h6>
-          {% for task in task.projects.all %}
-            <p>{{ task.project }}</p>
-            {% empty %}
-            <p>Проектов нет</p>
-          {% endfor %}
-          </div>
-          <div class="card-footer text-muted">
-            Последнее обновления: {{ task.updated_at|date:"d F Y"|default:'-' }}
-          </div>
+        <div class="card-header">
+            Название: {{ task.summary }}
+        </div>
+        <div class="card-body">
+            <h6 class="card-title">Статус: {{ task.status.title }}</h6>
+            <h6 class="card-title">Тип: {% for type in task.type.all %} {{ type }}{% if not forloop.last %},{% endif %}{% endfor %}</h6>
+            <p class="card-text" style="white-space: pre-wrap">{{ task.description }}</p>
+        </div>
+        <div class="card-footer text-muted">
+            <a href="{% url 'task_edit' task.pk %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+        </div>
     </div>
 {% endblock %}

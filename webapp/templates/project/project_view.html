@@ -16,8 +16,8 @@
                 href="#">{{ project.title }}</a>
         </h5>
         <div class="card-body">
-            <h5 class="card-title">Дата начала:{{ project.date_started }} </h5>
-            <p class="card-text">Дата окончания: {{ project.date_end|default:"-" }} </p>
+            <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>
+            <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>
             <p class="card-text" style="white-space: pre-wrap">{{ project.description }}</p>
         </div>
     </div>
@@ -31,11 +31,11 @@
             <div class="col col-lg-4 my-2">
                 <div class="card">
                     <div class="card-header">
-                        Название: {{ task.title }}
+                        Название: {{ task.summary }}
                     </div>
                     <div class="card-body">
-                        <h6 class="card-title">Статус: {{ task.status.name }}</h6>
-                        <h6 class="card-title">Тип: {% for type in task.types.all %}
+                        <h6 class="card-title">Статус: {{ task.status.title }}</h6>
+                        <h6 class="card-title">Тип: {% for type in task.type.all %}
                             {{ type }}{% if not forloop.last %},{% endif %}{% endfor %}</h6>
                         <p class="card-text" style="white-space: pre-wrap">{{ task.description }}</p>
                     </div>

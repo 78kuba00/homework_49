@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+
+
+
 {% block content %}
-<h1>Изменить задачу</h1>
+<h1>Update Task</h1>
 <form action="" method="POST">
-{% include 'partial/form.html' with button_text="Edit"%}
+    {% include 'partial/form.html' with button_text='Update' %}
 </form>
 {% endblock %}
