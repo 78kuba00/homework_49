@@ -15,8 +15,8 @@
                             href="{% url 'project_view' project.pk %}">{{ project.title }}</a>
                     </h5>
                     <div class="card-body">
-                        <h5 class="card-title">Дата начала:{{ project.date_started }} </h5>
-                        <p class="card-text">Дата окончания: {{ project.date_end|default:"-" }} </p>
+                        <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>
+                        <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>
                     </div>
                 </div>
             </div>
