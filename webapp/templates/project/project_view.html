@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'project_add' %}">Create Project ( + )</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'task_add' project.pk %}">Create Task ( + )</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="card text-center">
+        <h5 class="card-header"> Название: <a
+                href="#">{{ project.title }}</a>
+        </h5>
+        <div class="card-body">
+            <h5 class="card-title">Дата начала:{{ project.date_started }} </h5>
+            <p class="card-text">Дата окончания: {{ project.date_end|default:"-" }} </p>
+            <p class="card-text" style="white-space: pre-wrap">{{ project.description }}</p>
+        </div>
+    </div>
+<h3>Tasks: </h3>
+
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+    <div class="row">
+        {% for task in tasks %}
+            <div class="col col-lg-4 my-2">
+                <div class="card">
+                    <div class="card-header">
+                        Название: {{ task.title }}
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">Статус: {{ task.status.name }}</h6>
+                        <h6 class="card-title">Тип: {% for type in task.types.all %}
+                            {{ type }}{% if not forloop.last %},{% endif %}{% endfor %}</h6>
+                        <p class="card-text" style="white-space: pre-wrap">{{ task.description }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="{% url 'task_edit' task.pk %}" class="btn btn-primary">Update</a>
+                        <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{% endblock %}

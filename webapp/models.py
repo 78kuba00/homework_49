@@ -38,12 +38,4 @@ class Project(models.Model):
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание')
 
     def __str__(self):
-        return f'{self.title}'
-
-    def get_absolute_url(self):
-        return reverse('project_view', kwargs={'pk': self.pk})
-
-    class Meta:
-        db_table = 'projects'
-        verbose_name = 'Проект'
-        verbose_name_plural = 'Проекты'
+        return f'{self.id}. {self.title}'

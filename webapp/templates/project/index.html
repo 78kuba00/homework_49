@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'project_add' %}">Create Project ( + )</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% for project in projects %}
+            <div class="col col-lg-4 my-2">
+                <div class="card">
+                    <h5 class="card-header"> Название: <a
+                            href="{% url 'project_view' project.pk %}">{{ project.title }}</a>
+                    </h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Дата начала:{{ project.date_started }} </h5>
+                        <p class="card-text">Дата окончания: {{ project.date_end|default:"-" }} </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

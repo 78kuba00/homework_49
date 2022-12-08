@@ -19,7 +19,7 @@
                     <div class="card">
                        <h5 class="card-header"><input class="form-check-input" name="tasks" type="checkbox" value="{{ task.pk }}"> Название: <a href="{{ task.get_absolute_url }}">{{ task.summary.title }}</a></h5>
                        <div class="card-body">
-                           <h5 class="card-title">Тип: {% for t in task.type.all %} {{ t }}{% endfor %}</h5>
+                           <h5 class="card-title">Тип: {% for t in task.type.all %} {{ t }}{% if not forloop.last %},{% endif %}{% endfor %}</h5>
                            <h5 class="card-title">Статус: {{ task.status.title }}</h5>
                            <p class="card-text">{{ task.created_at|date:"d F Y"|default:'-' }}</p>
                        </div>
