@@ -58,23 +58,6 @@
 },
 {
   "model": "webapp.tracker",
-  "pk": 2,
-  "fields": {
-    "summary": "Get in a fight 2",
-    "description": "Fight for youre life",
-    "status": 3,
-    "created_at": "2022-11-29T14:01:27.124Z",
-    "updated_at": "2022-12-08T18:57:09.677Z",
-    "project": 2,
-    "type": [
-      1,
-      2,
-      3
-    ]
-  }
-},
-{
-  "model": "webapp.tracker",
   "pk": 3,
   "fields": {
     "summary": "Make lunch",
@@ -86,22 +69,6 @@
     "type": [
       1,
       3
-    ]
-  }
-},
-{
-  "model": "webapp.tracker",
-  "pk": 4,
-  "fields": {
-    "summary": "Fix engine",
-    "description": "Get the lc200 running",
-    "status": 3,
-    "created_at": "2022-11-29T14:02:42.433Z",
-    "updated_at": "2022-12-08T19:03:08.153Z",
-    "project": 3,
-    "type": [
-      1,
-      2
     ]
   }
 },
@@ -139,11 +106,11 @@
   "model": "webapp.tracker",
   "pk": 7,
   "fields": {
-    "summary": "Get a job",
+    "summary": "Get a job 2",
     "description": "Get high paid job in GOOGLE",
     "status": 2,
     "created_at": "2022-11-29T14:51:27.339Z",
-    "updated_at": "2022-12-08T19:04:39.817Z",
+    "updated_at": "2022-12-09T09:47:16.236Z",
     "project": 3,
     "type": [
       1,
@@ -516,10 +483,10 @@
   "model": "webapp.project",
   "pk": 1,
   "fields": {
-    "start_at": null,
-    "end_at": null,
-    "title": "Test",
-    "description": null
+    "start_at": "2022-11-07",
+    "end_at": "2023-09-01",
+    "title": "Test 2",
+    "description": ""
   }
 },
 {
@@ -540,6 +507,16 @@
     "end_at": "2024-12-01",
     "title": "Money",
     "description": "Everything with $"
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 6,
+  "fields": {
+    "start_at": "2022-12-07",
+    "end_at": "2023-12-01",
+    "title": "Test project",
+    "description": "90909090909"
   }
 },
 {
