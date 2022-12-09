@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.urls import reverse
 
 from webapp.models import Project
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from webapp.forms import ProjectForm
 from webapp.views import EditView
 
@@ -44,3 +44,11 @@ class ProjectEdit(EditView):
 
     def get_success_url(self):
         return reverse('project_view', kwargs={'pk': self.object.pk})
+
+class ProjectDelete(DeleteView):
+    model = Project
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('project_view', kwargs={'pk': self.object.article.pk})
