@@ -3,9 +3,9 @@
 {% block content %}
     <form action="" method="POST">
     {% csrf_token %}
-        <h4>Вы действительно хотите удатить задачу "{{ task.title }}"?</h4>
+        <h4>Вы действительно хотите удалить задачу "{{ task.summary }}"?</h4>
         <input type="submit" class="btn btn-danger" value="Да">
-{#        <a href="{% url 'task_view' task.pk %}" class="btn btn-success">Нет</a>#}
+        <a href="{% url 'task_view' task.pk %}" class="btn btn-success">Нет</a>
     </form>
 {% endblock %}
 

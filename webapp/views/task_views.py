@@ -66,6 +66,8 @@ class TaskEdit(EditView):
     model = Tracker
     task = None
     context_object_name = 'tasks'
+    redirect_url = 'index'
+
 
     # def dispatch(self, request, *args, **kwargs):
     #     self.task = self.get_object()
@@ -89,8 +91,8 @@ class TaskEdit(EditView):
 class TaskDelete(DeleteView):
     template_name = 'task/task_delete.html'
     model = Tracker
-    context_object_name = 'tasks'
-    success_url = reverse_lazy('index')
+    context_key = 'task'
+    redirect_url = reverse_lazy('index')
     # def get(self, request, *args, **kwargs):
     #     task = get_object_or_404(Tracker, pk=kwargs['pk'])
     #     return render(request, 'task/task_delete.html', {'task': task})
