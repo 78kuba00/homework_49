@@ -41,9 +41,10 @@ class ProjectEdit(EditView):
     template_name = 'project/project_edit.html'
     form_class = ProjectForm
     context_object_name = 'project'
+    redirect_url = 'index'
 
-    def get_success_url(self):
-        return reverse('project_view', kwargs={'pk': self.object.pk})
+    # def get_success_url(self):
+    #     return reverse('project_view', kwargs={'pk': self.object.pk})
 
 class ProjectDelete(DeleteView):
     model = Project
