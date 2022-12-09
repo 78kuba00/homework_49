@@ -4,6 +4,8 @@ from django.urls import reverse
 from webapp.models import Project
 from django.views.generic import ListView, DetailView, CreateView
 from webapp.forms import ProjectForm
+from webapp.views import EditView
+
 
 class ProjectListView(ListView):
     template_name = 'project/index.html'
@@ -30,6 +32,15 @@ class ProjectCreate(CreateView):
     model = Project
     template_name = 'project/create.html'
     form_class = ProjectForm
+
+    def get_success_url(self):
+        return reverse('project_view', kwargs={'pk': self.object.pk})
+
+class ProjectEdit(EditView):
+    model = Project
+    template_name = 'project/project_edit.html'
+    form_class = ProjectForm
+    context_object_name = 'project'
 
     def get_success_url(self):
         return reverse('project_view', kwargs={'pk': self.object.pk})

@@ -20,6 +20,10 @@
             <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>
             <p class="card-text" style="white-space: pre-wrap">{{ project.description }}</p>
         </div>
+        <div class="card-footer text-muted">
+            <a href="{% url 'project_edit' project.pk %}" class="btn btn-primary">Edit</a>
+{#            <a href="{% url 'task_delete' project.pk %}" class="btn btn-danger">Delete</a>#}
+        </div>
     </div>
 <h3>Tasks: </h3>
 
