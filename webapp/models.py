@@ -23,7 +23,7 @@ class Tracker(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время изменения')
     type = models.ManyToManyField('webapp.TrackerType', related_name='tasks_new')
-    project = models.ForeignKey('webapp.Project', related_name='projects', on_delete=models.PROTECT, default=1, verbose_name='Проект')
+    project = models.ForeignKey('webapp.Project', related_name='projects', on_delete=models.CASCADE, default=1, verbose_name='Проект')
 
     def get_absolute_url(self):
         return reverse('task_view', kwargs={'pk': self.pk})

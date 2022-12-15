@@ -3,7 +3,7 @@ from django.urls import reverse, reverse_lazy
 
 from webapp.models import Tracker, Project
 from webapp.forms import TaskForm, SimpleSearchForm
-from django.views.generic import View, DetailView, CreateView
+from django.views.generic import DetailView, CreateView
 from webapp.views import SearchView, EditView, DeleteView
 
 
@@ -37,6 +37,13 @@ class TaskCreate(CreateView):
     template_name = 'task/create.html'
     model = Tracker
     form_class = TaskForm
+    # context_object_name = 'tasks'
+    redirect_url = reverse_lazy('task/index.html')
+
+    # def form_valid(self, form):
+    #     print(self.kwargs.get('pk'))
+    #     form.instance.project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+    #     return super().form_valid(form)
 
 class TaskEdit(EditView):
     form_class = TaskForm
