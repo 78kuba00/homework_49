@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.urls import reverse
 
 from webapp.models import Project
-from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, RedirectView
 from webapp.forms import ProjectForm
 from webapp.views import EditView
 
@@ -28,6 +28,10 @@ class ProjectDetail(DetailView):
         context['tasks'] = page_obj.object_list
         return context
 
+class MyRedirectView(RedirectView):
+    url = 'https://ccbv.co.uk/projects/Django/4.1/django.views.generic.base/RedirectView/'
+
+
 class ProjectCreate(CreateView):
     model = Project
     template_name = 'project/create.html'
@@ -41,7 +45,7 @@ class ProjectEdit(EditView):
     template_name = 'project/project_edit.html'
     form_class = ProjectForm
     context_object_name = 'project'
-    redirect_url = 'index'
+    redirect_url = 'webapp:index'
 
     # def get_success_url(self):
     #     return reverse('project_view', kwargs={'pk': self.object.pk})
@@ -52,4 +56,4 @@ class ProjectDelete(DeleteView):
         return self.delete(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('index')
+        return reverse('webapp:index')

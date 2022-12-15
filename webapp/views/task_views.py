@@ -38,12 +38,15 @@ class TaskCreate(CreateView):
     model = Tracker
     form_class = TaskForm
     # context_object_name = 'tasks'
-    redirect_url = reverse_lazy('task/index.html')
+    # redirect_url = reverse_lazy('webapp:index')
 
-    # def form_valid(self, form):
-    #     print(self.kwargs.get('pk'))
-    #     form.instance.project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        print(self.kwargs.get('pk'))
+        form.instance.project = get_object_or_404(Tracker, pk=self.kwargs.get('pk'))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('webapp:index', kwargs={'pk': self.object.pk})
 
 class TaskEdit(EditView):
     form_class = TaskForm
@@ -51,11 +54,11 @@ class TaskEdit(EditView):
     model = Tracker
     task = None
     context_object_name = 'tasks'
-    redirect_url = 'index'
+    redirect_url = 'webapp:index'
 
 
 class TaskDelete(DeleteView):
     template_name = 'task/task_delete.html'
     model = Tracker
     context_key = 'task'
-    redirect_url = reverse_lazy('index')
+    redirect_url = reverse_lazy('webapp:index')

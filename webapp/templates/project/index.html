@@ -2,7 +2,7 @@
 
 {% block nav %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'project_add' %}">Create Project ( + )</a>
+        <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
     </li>
 {% endblock %}
 
@@ -12,7 +12,7 @@
             <div class="col col-lg-4 my-2">
                 <div class="card">
                     <h5 class="card-header"> Название: <a
-                            href="{% url 'project_view' project.pk %}">{{ project.title }}</a>
+                            href="{% url 'webapp:project_view' project.pk %}">{{ project.title }}</a>
                     </h5>
                     <div class="card-body">
                         <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>

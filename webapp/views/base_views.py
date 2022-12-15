@@ -121,3 +121,4 @@ class EditView(View):
 
    def get_redirect_url(self):
        return self.redirect_url
+

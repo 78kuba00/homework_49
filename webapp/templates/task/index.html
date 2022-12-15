@@ -2,7 +2,7 @@
 
 {% block nav %}
     <li class="nav-item">
-{#        <a class="nav-link" href="{% url 'task_add' task.pk %}">Create Task ( + )</a>#}
+{#        <a class="nav-link" href="{% url 'webapp:task_add' %}">Create Task ( + )</a>#}
     </li>
     <li class="nav-item">
         {% include 'partial/simple_search.html' %}
@@ -21,7 +21,7 @@
                         <h5 class="card-header"><input class="form-check-input" name="tasks" type="checkbox"
                                                        value="{{ task.pk }}"
                         > Название: <a
-                                href="{% url 'task_view' task.pk %}">{{ task.summary }}</a>
+                                href="{% url 'webapp:task_view' task.pk %}">{{ task.summary }}</a>
                         </h5>
                         <div class="card-body">
                             <h5 class="card-title">Статус: {{ task.status.title }}</h5>
