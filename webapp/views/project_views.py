@@ -1,4 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from django.shortcuts import redirect
 from django.urls import reverse
 
 from webapp.models import Project
@@ -32,15 +34,20 @@ class MyRedirectView(RedirectView):
     url = 'https://ccbv.co.uk/projects/Django/4.1/django.views.generic.base/RedirectView/'
 
 
-class ProjectCreate(CreateView):
+class ProjectCreate(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'project/create.html'
     form_class = ProjectForm
 
-    def get_success_url(self):
-        return reverse('project_view', kwargs={'pk': self.object.pk})
+    # def dispatch(self, request, *args, **kwargs):
+    #     if request.user.is_authenticated:
+    #         return super().dispatch(request, *args, **kwargs)
+    #     return redirect('accounts:login')
+    #
+    # def get_success_url(self):
+    #     return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
 
-class ProjectEdit(EditView):
+class ProjectEdit(LoginRequiredMixin, EditView):
     model = Project
     template_name = 'project/project_edit.html'
     form_class = ProjectForm
@@ -50,7 +57,7 @@ class ProjectEdit(EditView):
     # def get_success_url(self):
     #     return reverse('project_view', kwargs={'pk': self.object.pk})
 
-class ProjectDelete(DeleteView):
+class ProjectDelete(LoginRequiredMixin, DeleteView):
     model = Project
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)

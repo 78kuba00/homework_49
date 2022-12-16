@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 
@@ -33,7 +34,7 @@ class TaskView(DetailView):
         context['task'] = get_object_or_404(Tracker, pk=self.kwargs.get('pk'))
         return context
 
-class TaskCreate(CreateView):
+class TaskCreate(LoginRequiredMixin, CreateView):
     template_name = 'task/create.html'
     model = Tracker
     form_class = TaskForm
@@ -48,7 +49,7 @@ class TaskCreate(CreateView):
     def get_success_url(self):
         return reverse('webapp:index', kwargs={'pk': self.object.pk})
 
-class TaskEdit(EditView):
+class TaskEdit(LoginRequiredMixin, EditView):
     form_class = TaskForm
     template_name = 'task/task_edit.html'
     model = Tracker
@@ -57,7 +58,7 @@ class TaskEdit(EditView):
     redirect_url = 'webapp:index'
 
 
-class TaskDelete(DeleteView):
+class TaskDelete(LoginRequiredMixin, DeleteView):
     template_name = 'task/task_delete.html'
     model = Tracker
     context_key = 'task'

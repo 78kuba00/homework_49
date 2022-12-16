@@ -26,7 +26,7 @@ class Tracker(models.Model):
     project = models.ForeignKey('webapp.Project', related_name='projects', on_delete=models.CASCADE, default=1, verbose_name='Проект')
 
     def get_absolute_url(self):
-        return reverse('webapp:task_view', kwargs={'pk': self.pk})
+        return reverse('webapp:index', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f'{self.pk}. {self.summary}'
