@@ -38,7 +38,6 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     model = Tracker
     form_class = TaskForm
     context_object_name = 'tasks'
-    # redirect_url = reverse_lazy('webapp:index')
 
     def form_valid(self, form):
         print(self.kwargs.get('pk'))
@@ -53,7 +52,6 @@ class TaskEdit(LoginRequiredMixin, UpdateView):
     template_name = 'task/task_edit.html'
     model = Tracker
     context_object_name = 'tasks'
-    # redirect_url = 'webapp:index'
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})

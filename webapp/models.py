@@ -36,8 +36,5 @@ class Project(models.Model):
     title = models.CharField(max_length=60, verbose_name="Название")
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание')
 
-    # def get_absolute_url(self):
-    #     return reverse('webapp:index', kwargs={'pk': self.pk})
-
     def __str__(self):
         return f'{self.id}. {self.title}'

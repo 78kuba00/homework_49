@@ -1,12 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.shortcuts import redirect
 from django.urls import reverse
 
 from webapp.models import Project
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, RedirectView, UpdateView
 from webapp.forms import ProjectForm
-from webapp.views import EditView
+
 
 
 class ProjectListView(ListView):
@@ -58,9 +57,6 @@ class ProjectEdit(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
-
-    # def get_success_url(self):
-    #     return reverse('project_view', kwargs={'pk': self.object.pk})
 
 class ProjectDelete(LoginRequiredMixin, DeleteView):
     model = Project
