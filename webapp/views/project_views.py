@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 from webapp.models import Project
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, RedirectView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, RedirectView, UpdateView
 from webapp.forms import ProjectForm
 from webapp.views import EditView
 
@@ -39,6 +39,8 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
     template_name = 'project/create.html'
     form_class = ProjectForm
 
+    def get_success_url(self):
+        return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
     # def dispatch(self, request, *args, **kwargs):
     #     if request.user.is_authenticated:
     #         return super().dispatch(request, *args, **kwargs)
@@ -47,12 +49,15 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
     # def get_success_url(self):
     #     return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
 
-class ProjectEdit(LoginRequiredMixin, EditView):
+class ProjectEdit(LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'project/project_edit.html'
     form_class = ProjectForm
     context_object_name = 'project'
     redirect_url = 'webapp:index'
+
+    def get_success_url(self):
+        return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
 
     # def get_success_url(self):
     #     return reverse('project_view', kwargs={'pk': self.object.pk})

@@ -4,11 +4,10 @@ from django.urls import reverse, reverse_lazy
 
 from webapp.models import Tracker, Project
 from webapp.forms import TaskForm, SimpleSearchForm
-from django.views.generic import DetailView, CreateView
-from webapp.views import SearchView, EditView, DeleteView
+from django.views.generic import DetailView, CreateView, ListView, DeleteView, UpdateView
 
 
-class IndexViews(SearchView):
+class IndexViews(ListView):
     template_name = 'task/index.html'
     context_object_name = 'tasks'
     model = Tracker
@@ -38,28 +37,33 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     template_name = 'task/create.html'
     model = Tracker
     form_class = TaskForm
-    # context_object_name = 'tasks'
+    context_object_name = 'tasks'
     # redirect_url = reverse_lazy('webapp:index')
 
     def form_valid(self, form):
         print(self.kwargs.get('pk'))
-        form.instance.project = get_object_or_404(Tracker, pk=self.kwargs.get('pk'))
+        form.instance.project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('webapp:index', kwargs={'pk': self.object.pk})
+        return reverse('webapp:project_view', kwargs={'pk': self.kwargs.get('pk')})
 
-class TaskEdit(LoginRequiredMixin, EditView):
+class TaskEdit(LoginRequiredMixin, UpdateView):
     form_class = TaskForm
     template_name = 'task/task_edit.html'
     model = Tracker
-    task = None
     context_object_name = 'tasks'
-    redirect_url = 'webapp:index'
+    # redirect_url = 'webapp:index'
+
+    def get_success_url(self):
+        return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
 
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
     template_name = 'task/task_delete.html'
     model = Tracker
-    context_key = 'task'
+    context_object_name = 'task'
     redirect_url = reverse_lazy('webapp:index')
+
+    def get_success_url(self):
+        return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})

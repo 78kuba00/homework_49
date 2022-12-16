@@ -5,7 +5,7 @@ from webapp.views import IndexViews, TaskView, TaskCreate, TaskEdit, TaskDelete,
 app_name = 'webapp'
 
 urlpatterns = [
-    path('', ProjectListView.as_view(), name='webapp:index'),
+    path('', ProjectListView.as_view(), name='index'),
     path('project/<int:pk>/', ProjectDetail.as_view(), name='project_view'),
     path('project/add/', ProjectCreate.as_view(), name='project_add'),
     path('project/<int:pk>/edit/', ProjectEdit.as_view(), name='project_edit'),

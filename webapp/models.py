@@ -11,7 +11,6 @@ class TrackerStatus(models.Model):
 
 class TrackerType(models.Model):
     title = models.CharField(max_length=60, verbose_name="Название")
-    # tracker = models.ForeignKey('webapp.Tracker', related_name='tracker_types', on_delete=models.CASCADE, verbose_name='Трекер')
 
     def __str__(self):
         return self.title
@@ -36,6 +35,9 @@ class Project(models.Model):
     end_at = models.DateField(null=True, blank=True, verbose_name="Дата окончания")
     title = models.CharField(max_length=60, verbose_name="Название")
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание')
+
+    # def get_absolute_url(self):
+    #     return reverse('webapp:index', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f'{self.id}. {self.title}'
