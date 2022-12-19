@@ -23,6 +23,8 @@ class IndexViews(ListView):
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
 
+    def get_success_url(self):
+        return reverse('webapp:index', kwargs={'pk': self.object.project.pk})
 
 class TaskView(DetailView):
     template_name = 'task/task_view.html'
