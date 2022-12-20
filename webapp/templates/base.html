@@ -27,11 +27,14 @@
                 <a class="nav-link">Hello, {{ request.user.username }}</a>
             </p>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:logout' %}">Exit</a>
+                <a class="nav-link" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Exit</a>
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                <a class="nav-link" href="{% url 'accounts:login' %}?next={{ request.path }}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:create' %}?next={{ request.path }}">Register</a>
             </li>
         {% endif %}
       </div>

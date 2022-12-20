@@ -14,17 +14,17 @@
 
 {% block content %}
     <div class="card text-center">
-        <h5 class="card-header"> Название: <a
-                href="#">{{ project.title }}</a>
-        </h5>
+        <h5 class="card-header"> Название: {{ project.title }}</h5>
         <div class="card-body">
             <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>
             <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>
             <p class="card-text" style="white-space: pre-wrap">{{ project.description }}</p>
         </div>
         <div class="card-footer text-muted">
+            {%  if request.user.is_authenticated %}
             <a href="{% url 'webapp:project_edit' project.pk %}" class="btn btn-primary">Edit</a>
             <a href="{% url 'webapp:project_delete' project.pk %}" class="btn btn-danger">Delete</a>
+            {% endif %}
         </div>
     </div>
 <h3>Tasks: </h3>
@@ -46,8 +46,10 @@
                         <p class="card-text" style="white-space: pre-wrap">{{ task.description }}</p>
                     </div>
                     <div class="card-footer text-muted">
+                        {%  if request.user.is_authenticated %}
                         <a href="{% url 'webapp:task_edit' task.pk %}" class="btn btn-primary">Update</a>
                         <a href="{% url 'webapp:task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

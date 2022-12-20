@@ -11,8 +11,10 @@
             <p class="card-text" style="white-space: pre-wrap">{{ task.description }}</p>
         </div>
         <div class="card-footer text-muted">
+            {%  if request.user.is_authenticated %}
             <a href="{% url 'webapp:task_edit' task.pk %}" class="btn btn-primary">Edit</a>
             <a href="{% url 'webapp:task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

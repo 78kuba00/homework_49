@@ -13,14 +13,17 @@
     <h1>To-Do List</h1>
     <form action="" method="POST">
         {% csrf_token %}
-        <input type="submit" class="btn btn-danger" value="Delete">
+{#        {%  if request.user.is_authenticated %}#}
+{#        <input type="submit" class="btn btn-danger" value="Delete">#}
+{#        {% endif %}#}
         <div class="row">
             {% for task in tasks %}
                 <div class="col col-lg-4 my-2">
                     <div class="card">
-                        <h5 class="card-header"><input class="form-check-input" name="tasks" type="checkbox"
-                                                       value="{{ task.pk }}"
-                        > Название: <a
+                        <h5 class="card-header">
+{#                            {%  if request.user.is_authenticated %}<input class="form-check-input" name="tasks" type="checkbox"#}
+{#                                                       value="{{ task.pk }}"> {% endif %}#}
+                        Название: <a
                                 href="{% url 'webapp:task_view' task.pk %}">{{ task.summary }}</a>
                         </h5>
                         <div class="card-body">

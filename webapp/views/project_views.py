@@ -40,13 +40,7 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
-    # def dispatch(self, request, *args, **kwargs):
-    #     if request.user.is_authenticated:
-    #         return super().dispatch(request, *args, **kwargs)
-    #     return redirect('accounts:login')
-    #
-    # def get_success_url(self):
-    #     return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
+
 
 class ProjectEdit(LoginRequiredMixin, UpdateView):
     model = Project

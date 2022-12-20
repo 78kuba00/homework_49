@@ -19,9 +19,13 @@ class IndexViews(ListView):
 
     def post(self, request, *args, **kwargs):
         for task_pk in request.POST.getlist('tasks', []):
-            self.model.objects.get(pk=task_pk).delete()
-        context = self.get_context_data(**kwargs)
-        return self.render_to_response(context)
+            print(self.request.POST.getlist('tasks', []))
+            # self.model.objects.get(pk=task_pk).delete()
+        # context = self.get_context_data(**kwargs)
+        # print(self.get_context_data(**kwargs))
+        return redirect("webapp:task_view")
+
+    # self.render_to_response(context)
 
     def get_success_url(self):
         return reverse('webapp:index', kwargs={'pk': self.object.project.pk})
