@@ -2,19 +2,23 @@
 
 {% block nav %}
     {%  if request.user.is_authenticated %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'webapp:task_add' project.pk %}">Create Task ( + )</a>
-    </li>
+        {% if perms.webapp.create_project %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
+            </li>
+        {% endif %}
+        {% if perms.webapp.create_task %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:task_add' project.pk %}">Create Task ( + )</a>
+            </li>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
     <div class="card text-center">
         <h5 class="card-header"> Название: {{ project.title }}</h5>
+        <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>
         <div class="card-body">
             <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>
             <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>
@@ -22,8 +26,12 @@
         </div>
         <div class="card-footer text-muted">
             {%  if request.user.is_authenticated %}
-            <a href="{% url 'webapp:project_edit' project.pk %}" class="btn btn-primary">Edit</a>
-            <a href="{% url 'webapp:project_delete' project.pk %}" class="btn btn-danger">Delete</a>
+                {% if perms.webapp.change_project %}
+                    <a href="{% url 'webapp:project_edit' project.pk %}" class="btn btn-primary">Edit</a>
+                {% endif %}
+                {% if perms.webapp.delete_project %}
+                    <a href="{% url 'webapp:project_delete' project.pk %}" class="btn btn-danger">Delete</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
@@ -38,6 +46,7 @@
                 <div class="card">
                     <div class="card-header">
                         Название: {{ task.summary }}
+                        <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>
                     </div>
                     <div class="card-body">
                         <h6 class="card-title">Статус: {{ task.status.title }}</h6>
@@ -47,8 +56,12 @@
                     </div>
                     <div class="card-footer text-muted">
                         {%  if request.user.is_authenticated %}
-                        <a href="{% url 'webapp:task_edit' task.pk %}" class="btn btn-primary">Update</a>
-                        <a href="{% url 'webapp:task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+                            {% if perms.webapp.change_task %}
+                                <a href="{% url 'webapp:task_edit' task.pk %}" class="btn btn-primary">Update</a>
+                            {% endif %}
+                            {% if perms.webapp.delete_task %}
+                                <a href="{% url 'webapp:task_delete' task.pk %}" class="btn btn-danger">Delete</a>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

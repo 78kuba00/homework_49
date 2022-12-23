@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block nav %}
+{#    {% if perms.webapp.create_project and request.user in project.users.all %}#}
     {%  if request.user.is_authenticated %}
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
-    </li>
+        {% if perms.webapp.create_project %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
+            </li>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
@@ -16,6 +19,7 @@
                     <h5 class="card-header"> Название: <a
                             href="{% url 'webapp:project_view' project.pk %}">{{ project.title }}</a>
                     </h5>
+                    <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>
                     <div class="card-body">
                         <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>
                         <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>

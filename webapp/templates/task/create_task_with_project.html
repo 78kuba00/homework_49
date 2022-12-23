@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Create project{% endblock %}
+
+
+{% block content %}
+    <h1 class="my-3">Create Project</h1>
+    <form action="" class="form-control" method="post">
+        {% include 'partial/form.html' with button_text='Создать' %}
+    </form>
+    <a href="{% url 'webapp:projects' %}" class="btn btn-primary">Home</a>
+{% endblock %}

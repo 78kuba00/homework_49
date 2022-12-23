@@ -1,0 +1,552 @@
+[
+{
+  "model": "webapp.trackerstatus",
+  "pk": 1,
+  "fields": {
+    "title": "New"
+  }
+},
+{
+  "model": "webapp.trackerstatus",
+  "pk": 2,
+  "fields": {
+    "title": "In Progress"
+  }
+},
+{
+  "model": "webapp.trackerstatus",
+  "pk": 3,
+  "fields": {
+    "title": "Done"
+  }
+},
+{
+  "model": "webapp.trackertype",
+  "pk": 1,
+  "fields": {
+    "title": "Task"
+  }
+},
+{
+  "model": "webapp.trackertype",
+  "pk": 2,
+  "fields": {
+    "title": "Bug"
+  }
+},
+{
+  "model": "webapp.trackertype",
+  "pk": 3,
+  "fields": {
+    "title": "Enhancement"
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 1,
+  "fields": {
+    "summary": "Play Cod",
+    "description": "Reach level 55",
+    "status": 1,
+    "created_at": "2022-11-29T13:50:32.305Z",
+    "updated_at": "2022-12-08T17:39:09.778Z",
+    "project": 1,
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 3,
+  "fields": {
+    "summary": "Make lunch",
+    "description": "Sdelat bitch paket",
+    "status": 3,
+    "created_at": "2022-11-29T14:02:03.923Z",
+    "updated_at": "2022-12-08T18:57:16.032Z",
+    "project": 2,
+    "type": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 5,
+  "fields": {
+    "summary": "Make love",
+    "description": "Evade long term relationships",
+    "status": 2,
+    "created_at": "2022-11-29T14:03:17.457Z",
+    "updated_at": "2022-12-08T18:57:24.261Z",
+    "project": 2,
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 6,
+  "fields": {
+    "summary": "Become a programmer",
+    "description": "Finish learning python Django",
+    "status": 2,
+    "created_at": "2022-11-29T14:50:50.078Z",
+    "updated_at": "2022-11-29T14:50:50.078Z",
+    "project": 1,
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 7,
+  "fields": {
+    "summary": "Get a job 2",
+    "description": "Get high paid job in GOOGLE",
+    "status": 2,
+    "created_at": "2022-11-29T14:51:27.339Z",
+    "updated_at": "2022-12-09T09:47:16.236Z",
+    "project": 3,
+    "type": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 8,
+  "fields": {
+    "summary": "Buy e-class",
+    "description": "Buy w-124\r\n1995\r\n3.2\r\nAll black",
+    "status": 3,
+    "created_at": "2022-11-29T14:52:18.779Z",
+    "updated_at": "2022-12-08T19:04:32.042Z",
+    "project": 3,
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 10,
+  "fields": {
+    "summary": "Build house",
+    "description": "Build min 3 store house with 4 bedrooms",
+    "status": 1,
+    "created_at": "2022-11-29T14:55:20.599Z",
+    "updated_at": "2022-12-08T19:04:26.335Z",
+    "project": 3,
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 11,
+  "fields": {
+    "summary": "Raise kids",
+    "description": "Raise two children law-abidin citizens",
+    "status": 2,
+    "created_at": "2022-11-29T14:56:28.454Z",
+    "updated_at": "2022-12-08T19:04:18.110Z",
+    "project": 3,
+    "type": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 12,
+  "fields": {
+    "summary": "Reach 32 years",
+    "description": "Successfully reach 32 years of age on january  24th",
+    "status": 2,
+    "created_at": "2022-12-01T08:45:41.560Z",
+    "updated_at": "2022-12-01T08:45:41.560Z",
+    "project": 1,
+    "type": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 13,
+  "fields": {
+    "summary": "Sopranos",
+    "description": "Watch all seasons of Sopranos",
+    "status": 3,
+    "created_at": "2022-12-01T08:46:22.552Z",
+    "updated_at": "2022-12-01T08:46:22.552Z",
+    "project": 1,
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 14,
+  "fields": {
+    "summary": "Take out trash",
+    "description": "Take out the trash before trashvan comes\r\n(Every tuesday)",
+    "status": 2,
+    "created_at": "2022-12-01T08:48:24.607Z",
+    "updated_at": "2022-12-08T18:57:37.603Z",
+    "project": 2,
+    "type": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 15,
+  "fields": {
+    "summary": "Do groceries",
+    "description": "Dont forget to fill the refrigirator",
+    "status": 3,
+    "created_at": "2022-12-01T08:49:07.994Z",
+    "updated_at": "2022-12-08T19:04:08.583Z",
+    "project": 3,
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 16,
+  "fields": {
+    "summary": "Build muscles",
+    "description": "Buy ped and use them till my heart collapses",
+    "status": 1,
+    "created_at": "2022-12-01T08:50:28.443Z",
+    "updated_at": "2022-12-08T18:57:43.496Z",
+    "project": 2,
+    "type": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 17,
+  "fields": {
+    "summary": "Upgrade PC",
+    "description": "Buy GPU in RTX 40th series",
+    "status": 2,
+    "created_at": "2022-12-01T08:51:38.019Z",
+    "updated_at": "2022-12-08T19:03:54.037Z",
+    "project": 3,
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 18,
+  "fields": {
+    "summary": "Manage bills",
+    "description": "Make sure to pay taxes",
+    "status": 2,
+    "created_at": "2022-12-01T08:53:18.735Z",
+    "updated_at": "2022-12-08T19:03:47.211Z",
+    "project": 3,
+    "type": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 19,
+  "fields": {
+    "summary": "Do homework 53",
+    "description": "Don't forget to complete hw 53, at least without bonus",
+    "status": 2,
+    "created_at": "2022-12-01T08:54:12.207Z",
+    "updated_at": "2022-12-01T08:54:12.207Z",
+    "project": 1,
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 20,
+  "fields": {
+    "summary": "Buy Fold-4",
+    "description": "Buy Samsung Fold 4 for gift",
+    "status": 1,
+    "created_at": "2022-12-01T08:56:40.615Z",
+    "updated_at": "2022-12-08T19:03:40.440Z",
+    "project": 3,
+    "type": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 21,
+  "fields": {
+    "summary": "Make pushups",
+    "description": "Do 100 pushups everyday till heart attack",
+    "status": 2,
+    "created_at": "2022-12-01T08:58:01.017Z",
+    "updated_at": "2022-12-08T18:57:57.162Z",
+    "project": 2,
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 22,
+  "fields": {
+    "summary": "Buy gamer chair",
+    "description": "Try to change the leather chair in my room",
+    "status": 3,
+    "created_at": "2022-12-01T08:58:43.641Z",
+    "updated_at": "2022-12-08T19:03:32.617Z",
+    "project": 3,
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 23,
+  "fields": {
+    "summary": "Run",
+    "description": "Run till i participate in iron man",
+    "status": 1,
+    "created_at": "2022-12-01T09:01:05.706Z",
+    "updated_at": "2022-12-08T18:58:03.873Z",
+    "project": 2,
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 24,
+  "fields": {
+    "summary": "DMX",
+    "description": "listen to gangsta rap SHIIIIIt",
+    "status": 3,
+    "created_at": "2022-12-01T09:01:36.706Z",
+    "updated_at": "2022-12-01T09:01:36.706Z",
+    "project": 1,
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 25,
+  "fields": {
+    "summary": "7zero",
+    "description": "Relax and chill with great music",
+    "status": 2,
+    "created_at": "2022-12-01T09:02:28.220Z",
+    "updated_at": "2022-12-01T09:02:28.220Z",
+    "project": 1,
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 26,
+  "fields": {
+    "summary": "Buy apartment",
+    "description": "Expand business",
+    "status": 3,
+    "created_at": "2022-12-01T09:03:12.674Z",
+    "updated_at": "2022-12-08T19:03:24.847Z",
+    "project": 3,
+    "type": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 27,
+  "fields": {
+    "summary": "Sell dope",
+    "description": "Get rid off the meth from Heisenberg",
+    "status": 1,
+    "created_at": "2022-12-01T09:03:49.169Z",
+    "updated_at": "2022-12-08T19:03:18.622Z",
+    "project": 3,
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 28,
+  "fields": {
+    "summary": "Task 141",
+    "description": "Assemble task 141",
+    "status": 1,
+    "created_at": "2022-12-01T09:56:31.541Z",
+    "updated_at": "2022-12-01T09:56:31.541Z",
+    "project": 1,
+    "type": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 29,
+  "fields": {
+    "summary": "Make bonus 53",
+    "description": "Try to make bonus 53",
+    "status": 1,
+    "created_at": "2022-12-01T15:32:27.154Z",
+    "updated_at": "2022-12-06T08:54:10.207Z",
+    "project": 1,
+    "type": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 31,
+  "fields": {
+    "summary": "Play Cod 4",
+    "description": "fsvrsfsrgdtbdbtsdtbsdtbs",
+    "status": 1,
+    "created_at": "2022-12-06T10:06:56.504Z",
+    "updated_at": "2022-12-08T17:35:01.909Z",
+    "project": 2,
+    "type": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "webapp.tracker",
+  "pk": 38,
+  "fields": {
+    "summary": "Task 12",
+    "description": "KUBATUAVSI",
+    "status": 1,
+    "created_at": "2022-12-08T17:41:05.619Z",
+    "updated_at": "2022-12-08T17:41:25.067Z",
+    "project": 1,
+    "type": [
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 1,
+  "fields": {
+    "start_at": "2022-11-07",
+    "end_at": "2023-09-01",
+    "title": "Test 2",
+    "description": "",
+    "users": []
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 2,
+  "fields": {
+    "start_at": "2022-12-07",
+    "end_at": "2023-12-01",
+    "title": "Physical Activity 2",
+    "description": "All physical interactions",
+    "users": [
+      36
+    ]
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 3,
+  "fields": {
+    "start_at": "2022-12-07",
+    "end_at": "2024-12-01",
+    "title": "Money",
+    "description": "Everything with $",
+    "users": []
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 6,
+  "fields": {
+    "start_at": "2022-12-07",
+    "end_at": "2023-12-01",
+    "title": "Test project",
+    "description": "90909090909",
+    "users": []
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 16,
+  "fields": {
+    "start_at": "2022-06-09",
+    "end_at": "2024-12-01",
+    "title": "new Project",
+    "description": "ojhfvdljb;rovnd;t",
+    "users": []
+  }
+},
+{
+  "model": "webapp.project",
+  "pk": 17,
+  "fields": {
+    "start_at": "2022-12-07",
+    "end_at": "2023-12-01",
+    "title": "Devtest",
+    "description": "clkjnslrjbcs",
+    "users": [
+      34
+    ]
+  }
+}
+]

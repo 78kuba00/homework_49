@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 
@@ -35,6 +36,16 @@ class Project(models.Model):
     end_at = models.DateField(null=True, blank=True, verbose_name="Дата окончания")
     title = models.CharField(max_length=60, verbose_name="Название")
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание')
+    users = models.ManyToManyField(get_user_model(), related_name='projects', default=1, verbose_name='Пользователь')
+
+    class Meta:
+        db_table = "webapp_project"
+        verbose_name = "Проект"
+        verbose_name_plural = "Проекты"
+        permissions = [
+            ('can_add_users_to_the_project', 'Can add users to project'),
+            ('can_delete_users_to_the_project', 'Can delete users in projects')
+        ]
 
     def __str__(self):
         return f'{self.id}. {self.title}'

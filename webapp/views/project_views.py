@@ -1,5 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
+from django.shortcuts import redirect
 from django.urls import reverse
 
 from webapp.models import Project
@@ -37,23 +39,45 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'project/create.html'
     form_class = ProjectForm
+    permission_required = "webapp.add_project"
+
+    # def form_valid(self, form):
+    #     form.instance.users = self.request.user
+    #     # a2.publications.add(p1, p2)
+    #     return super().form_valid(form)
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not request.user.is_authenticated:
+    #         return redirect('accounts:login')
+    #     if not request.user.has_perm('webapp.add_project'):
+    #         raise PermissionDenied
+    #     return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
 
 
-class ProjectEdit(LoginRequiredMixin, UpdateView):
+class ProjectEdit(PermissionRequiredMixin, UpdateView):
     model = Project
     template_name = 'project/project_edit.html'
     form_class = ProjectForm
     context_object_name = 'project'
     redirect_url = 'webapp:index'
+    permission_required = 'webapp.change_project'
+
+    def has_permission(self):
+        return super().has_permission() or self.get_object().users == self.request.user
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
 
-class ProjectDelete(LoginRequiredMixin, DeleteView):
+class ProjectDelete(PermissionRequiredMixin, DeleteView):
     model = Project
+    permission_required = 'webapp.delete_project'
+
+    def has_permission(self):
+        return super().has_permission() or self.get_object().author == self.request.user
+
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
 

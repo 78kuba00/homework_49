@@ -1,9 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 
 from webapp.models import Tracker, Project
-from webapp.forms import TaskForm, SimpleSearchForm
+from webapp.forms import TaskForm, SimpleSearchForm, TaskWithProjectForm
 from django.views.generic import DetailView, CreateView, ListView, DeleteView, UpdateView
 
 
@@ -59,6 +59,9 @@ class TaskEdit(LoginRequiredMixin, UpdateView):
     model = Tracker
     context_object_name = 'tasks'
 
+    def has_permission(self):
+        return self.request.user.has_perm('webapp.change_tracker') or self.get_object().users == self.request.user
+
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
 
@@ -69,5 +72,21 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     context_object_name = 'task'
     redirect_url = reverse_lazy('webapp:index')
 
+    def test_func(self):
+        return self.request.user.has_perm('webapp.delete_tracker') or self.get_object().users == self.request.user
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
+
+class CreateTaskWithProject(PermissionRequiredMixin, CreateView):
+    form_class = TaskWithProjectForm
+    template_name = 'tasks/create_task_with_project.html'
+
+    def form_valid(self, form):
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        user = self.request.user
+        form.instance.project = project
+        form.instance.users = user
+        return super().form_valid(form)
