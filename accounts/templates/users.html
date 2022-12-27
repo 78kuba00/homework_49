@@ -4,10 +4,10 @@
 {% block content %}
 <h1>All users</h1>
 <div class="row">
-    {% for user in users %}
+    {% for user_obj in users_obj %}
         <div class="col col-lg-4 my-2">
             <div class="card">
-                <h5 class="card-header"> Name: <a href="{% url 'accounts:users_detail' users_obj.pk %}">{{ user }}</a></h5>
+                <h5 class="card-header"> Name: <a href="{% url 'accounts:detail' user_obj.pk %}">{{ user_obj }}</a></h5>
                 <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>
                 <div class="card-body">
                     <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>

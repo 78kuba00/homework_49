@@ -11,7 +11,7 @@
     {% endif %}
     {% if perms.accounts.can_view_all_users or request.user.is_superuser %}
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:users_list' %}">All users</a>
+            <a class="nav-link" href="{% url 'accounts:users' %}">All users</a>
         </li>
     {% endif %}
 {% endblock %}

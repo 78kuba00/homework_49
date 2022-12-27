@@ -9,7 +9,7 @@ urlpatterns = [
     # re_path(r'^login?/$', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('create/', RegisterView.as_view(), name='create'),
-    path('<int:pk>/', UserDetailView.as_view(), name='detail'),
-    path('users_list/', UsersListView.as_view(), name='users_list'),
+    path('user/<int:pk>/', UserDetailView.as_view(), name='detail'),
+    path('users/', UsersListView.as_view(), name='users'),
 
 ]
