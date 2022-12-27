@@ -3,29 +3,19 @@
 {% block nav %}
 {#    {% if perms.webapp.create_project and request.user in project.users.all %}#}
     {%  if request.user.is_authenticated %}
-        {% if perms.webapp.create_project %}
+        {% if perms.webapp.add_project %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
             </li>
         {% endif %}
     {% endif %}
+    {% if perms.accounts.can_view_all_users or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:users_list' %}">All users</a>
+        </li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        {% for project in projects %}
-            <div class="col col-lg-4 my-2">
-                <div class="card">
-                    <h5 class="card-header"> Название: <a
-                            href="{% url 'webapp:project_view' project.pk %}">{{ project.title }}</a>
-                    </h5>
-                    <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>
-                    <div class="card-body">
-                        <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>
-                        <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    {% include 'partial/project_list_partial.html' %}
 {% endblock %}

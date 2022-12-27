@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 
 from webapp.models import Project
@@ -15,6 +15,7 @@ class ProjectListView(ListView):
     model = Project
     context_object_name = 'projects'
     ordering = '-start_at'
+    paginate_by = 4
 
 class ProjectDetail(DetailView):
     model = Project
@@ -66,7 +67,9 @@ class ProjectEdit(PermissionRequiredMixin, UpdateView):
     permission_required = 'webapp.change_project'
 
     def has_permission(self):
-        return super().has_permission() or self.get_object().users == self.request.user
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        # return super().has_permission() or self.get_object().users == self.request.user
+        return super().has_permission() and self.request.user in project.users.all()
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.pk})

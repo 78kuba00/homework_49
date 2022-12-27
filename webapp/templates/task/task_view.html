@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 
+{% block nav %}
+    {% if perms.webapp.edit_task and request.user in task.project.users.all %}
+        <li class="nav-item">
+            <a href="{% url 'webapp:task_edit' task.pk %}" class="nav-link text-light">Редактировать задачу</a>
+        </li>
+    {% endif %}
+    {% if perms.webapp.delete_task and request.user in task.project.users.all %}
+        <li class="nav-item">
+            <a href="{% url 'webapp:task_delete' task.pk %}" class="nav-link text-light">Удалить задачу</a>
+        </li>
+    {% endif %}
+{% endblock %}
 {% block content %}
     <div class="card text-center">
         <div class="card-header">

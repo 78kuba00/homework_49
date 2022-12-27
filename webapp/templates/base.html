@@ -24,7 +24,7 @@
             {% block nav %}{% endblock %}
         {% if request.user.is_authenticated %}
             <p class="nav-item">
-                <a class="nav-link">Hello, {{ request.user.username }}</a>
+                <p class="nav-link">Hello, <a href="{% url 'accounts:detail' request.user.pk %}">{{ request.user.username }}</a></p>
             </p>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Exit</a>
