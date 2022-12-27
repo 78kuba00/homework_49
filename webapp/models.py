@@ -44,7 +44,8 @@ class Project(models.Model):
         verbose_name_plural = "Проекты"
         permissions = [
             ('can_add_users_to_the_project', 'Can add users to project'),
-            ('can_delete_users_to_the_project', 'Can delete users in projects')
+            ('can_delete_users_to_the_project', 'Can delete users in projects'),
+            ('can_view_all_users', 'Can view all users')
         ]
 
     def __str__(self):

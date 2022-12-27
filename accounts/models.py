@@ -16,3 +16,6 @@ class Profile(models.Model):
         db_table = 'profile'
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
+        permissions = [
+            ('can_view_all_users', 'Can view all users')
+        ]

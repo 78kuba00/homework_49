@@ -20,6 +20,8 @@
             <p class="card-text">Фамилия: {{ user_obj.last_name }}</p>
             <p class="card-text">Дата рождения: {{ user_obj.profile.birth_date|date:'d.m.Y' }}</p>
             <p class="card-text">Почта: {{ user_obj.email }}</p>
+            <p class="card-text">Git: {{ user_obj.github }}</p>
+            <p class="card-text">О себе: {{ user_obj.bio }}</p>
           </div>
         </div>
   </div>
