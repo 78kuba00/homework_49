@@ -5,7 +5,7 @@
     {% csrf_token %}
         <h4>Вы действительно хотите удалить задачу "{{ task.summary }}"?</h4>
         <input type="submit" class="btn btn-danger" value="Да">
-        <a href="{% url 'webapp:task_view' task.pk %}" class="btn btn-success">Нет</a>
+        <a href="{% url 'webapp:project_view' task.project.pk %}" class="btn btn-success">Нет</a>
     </form>
 {% endblock %}
 

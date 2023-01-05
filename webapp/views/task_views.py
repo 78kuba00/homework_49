@@ -77,12 +77,13 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
+
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
 
 class CreateTaskWithProject(PermissionRequiredMixin, CreateView):
     form_class = TaskWithProjectForm
-    template_name = 'tasks/create_task_with_project.html'
+    template_name = 'task/create_task_with_project.html'
 
     def form_valid(self, form):
         project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
