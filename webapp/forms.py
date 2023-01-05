@@ -15,10 +15,16 @@ class TaskForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        exclude = []
+        fields = ['title', 'description', 'start_at', 'end_at']
 
 class SimpleSearchForm(forms.Form):
     search = forms.CharField(max_length=50, required=False, label='Найти')
+
+class ChangeUsersInProjectsForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['users']
+
 
 class TaskWithProjectForm(forms.ModelForm):
     class Meta:

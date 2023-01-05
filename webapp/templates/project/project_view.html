@@ -7,6 +7,9 @@
                 <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
             </li>
         {% endif %}
+        <li class="nav-item">
+                <a class="nav-link" href="{% url 'webapp:change_users' project.pk %}">Manage Users ( + )</a>
+            </li>
         {% if perms.webapp.create_task %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'webapp:task_add' project.pk %}">Create Task ( + )</a>
@@ -18,7 +21,8 @@
 {% block content %}
     <div class="card text-center">
         <h5 class="card-header"> Название: {{ project.title }}</h5>
-        <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>
+        <p class="card-text">Пользователь(ли): {% for users in project.users.all %}{{ users.username }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+{#        <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>#}
         <div class="card-body">
             <h5 class="card-title">Дата начала:{{ project.start_at }} </h5>
             <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>
@@ -46,7 +50,7 @@
                 <div class="card">
                     <div class="card-header">
                         Название: {{ task.summary }}
-                        <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>
+                        <p class="card-text">Пользователь(ли): {% for users in project.users.all %}{{ users.username }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
                     </div>
                     <div class="card-body">
                         <h6 class="card-title">Статус: {{ task.status.title }}</h6>

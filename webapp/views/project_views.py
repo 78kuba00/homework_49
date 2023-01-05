@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from webapp.models import Project
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, RedirectView, UpdateView
-from webapp.forms import ProjectForm
+from webapp.forms import ProjectForm, ChangeUsersInProjectsForm
 
 
 
@@ -86,3 +86,10 @@ class ProjectDelete(PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('webapp:index')
+
+class ChangeUsersInProjectView(UpdateView):
+    model = Project
+    form_class = ChangeUsersInProjectsForm
+    template_name = 'project/change_user.html'
+    def get_success_url(self):
+        return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
