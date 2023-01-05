@@ -42,10 +42,10 @@ class ProjectCreate(LoginRequiredMixin, CreateView):
     form_class = ProjectForm
     permission_required = "webapp.add_project"
 
-    # def form_valid(self, form):
-    #     form.instance.users = self.request.user
-    #     # a2.publications.add(p1, p2)
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.users.add(self.request.user)
+        return super().form_valid(form)
 
     # def dispatch(self, request, *args, **kwargs):
     #     if not request.user.is_authenticated:
@@ -91,5 +91,10 @@ class ChangeUsersInProjectView(UpdateView):
     model = Project
     form_class = ChangeUsersInProjectsForm
     template_name = 'project/change_user.html'
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['users'] = self.request.user
+        return kwargs
+
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.pk})
