@@ -3,6 +3,11 @@
     <li class="nav-item">
         <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
     </li>
+    {% if user_obj.pk == request.user.pk %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:change' %}">Редактировать </a>
+        </li>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
