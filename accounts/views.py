@@ -1,15 +1,16 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.urls import reverse
+from django.contrib.auth.views import PasswordChangeView
 
 from .forms import MyUserCreationForm, UserChangeForm, ProfileChangeForm
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic.list import MultipleObjectMixin
 from accounts.models import Profile
-from django.core.paginator import Paginator
+
 # Create your views here.
 
 class RegisterView(CreateView):
@@ -51,16 +52,6 @@ class UsersListView(PermissionRequiredMixin, ListView):
     def has_permission(self):
         return self.request.user.has_perm('accounts.can_view_all_users') and self.request.user in User.objects.all() or self.request.user.is_superuser
 
-    # def get_context_data(self, **kwargs):
-    #     articles = self.object.articles.order_by('-created_at')
-    #     paginator = Paginator(articles, self.paginate_related_by, orphans=self.paginate_related_orphans)
-    #     page_number = self.request.GET.get('page', 1)
-    #     page = paginator.get_page(page_number)
-    #     kwargs['page_obj'] = page
-    #     kwargs['articles'] = page.object_list
-    #     kwargs['is_paginated'] = page.has_other_pages()
-    #     return super().get_context_data(**kwargs)
-
 class UserChangeView(LoginRequiredMixin, UpdateView):
     model = get_user_model()
     form_class = UserChangeForm
@@ -96,3 +87,8 @@ class UserChangeView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('accounts:detail', kwargs={'pk': self.get_object().pk})
+
+class UserPasswordChangeView(PasswordChangeView):
+    template_name = 'user_password_change.html'
+    def get_success_url(self):
+        return reverse('accounts:detail', kwargs={'pk': self.request.user.pk})

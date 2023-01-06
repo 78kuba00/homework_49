@@ -5,10 +5,14 @@
     </li>
     {% if user_obj.pk == request.user.pk %}
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:change' %}">Редактировать </a>
+            <a class="nav-link" href="{% url 'accounts:change' %}">Edit user</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:password_change' %}">Change password</a>
         </li>
     {% endif %}
 {% endblock %}
+
 {% block content %}
     <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
     <div class="card mb-3">
