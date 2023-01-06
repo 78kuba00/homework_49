@@ -7,10 +7,12 @@
                 <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
             </li>
         {% endif %}
-        <li class="nav-item">
+        {% if perms.webapp.can_add_users_to_the_project and request.user in project.users.all %}
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'webapp:change_users' project.pk %}">Manage Users ( + )</a>
             </li>
-        {% if perms.webapp.create_task %}
+        {% endif %}
+        {% if perms.webapp.add_tracker and request.user in project.users.all %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'webapp:task_add' project.pk %}">Create Task ( + )</a>
             </li>
@@ -30,10 +32,10 @@
         </div>
         <div class="card-footer text-muted">
             {%  if request.user.is_authenticated %}
-                {% if perms.webapp.change_project %}
+                {% if perms.webapp.change_project and request.user in project.users.all %}
                     <a href="{% url 'webapp:project_edit' project.pk %}" class="btn btn-primary">Edit</a>
                 {% endif %}
-                {% if perms.webapp.delete_project %}
+                {% if perms.webapp.delete_project and request.user in project.users.all %}
                     <a href="{% url 'webapp:project_delete' project.pk %}" class="btn btn-danger">Delete</a>
                 {% endif %}
             {% endif %}
@@ -60,10 +62,10 @@
                     </div>
                     <div class="card-footer text-muted">
                         {%  if request.user.is_authenticated %}
-                            {% if perms.webapp.change_task %}
+                            {% if perms.webapp.change_tracker and request.user in project.users.all %}
                                 <a href="{% url 'webapp:task_edit' task.pk %}" class="btn btn-primary">Edit</a>
                             {% endif %}
-                            {% if perms.webapp.delete_task %}
+                            {% if perms.webapp.delete_tracker and request.user in project.users.all %}
                                 <a href="{% url 'webapp:task_delete' task.pk %}" class="btn btn-danger">Delete</a>
                             {% endif %}
                         {% endif %}

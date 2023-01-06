@@ -36,7 +36,7 @@ class MyRedirectView(RedirectView):
     url = 'https://ccbv.co.uk/projects/Django/4.1/django.views.generic.base/RedirectView/'
 
 
-class ProjectCreate(LoginRequiredMixin, CreateView):
+class ProjectCreate(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'project/create.html'
     form_class = ProjectForm
@@ -79,7 +79,8 @@ class ProjectDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'webapp.delete_project'
 
     def has_permission(self):
-        return super().has_permission() or self.get_object().author == self.request.user
+        project = get_object_or_404(Project, pk=self.kwargs.get('pk'))
+        return super().has_permission() and self.request.user in project.users.all()
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
@@ -87,10 +88,15 @@ class ProjectDelete(PermissionRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('webapp:index')
 
-class ChangeUsersInProjectView(UpdateView):
+class ChangeUsersInProjectView(PermissionRequiredMixin, UpdateView):
     model = Project
     form_class = ChangeUsersInProjectsForm
     template_name = 'project/change_user.html'
+    permission_required = 'webapp.can_add_users_to_the_project'
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.get_object().users.all()
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['users'] = self.request.user

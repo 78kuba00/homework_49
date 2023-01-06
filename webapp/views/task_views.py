@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 
 from webapp.models import Tracker, Project
@@ -39,11 +39,16 @@ class TaskView(DetailView):
         context['task'] = get_object_or_404(Tracker, pk=self.kwargs.get('pk'))
         return context
 
-class TaskCreate(LoginRequiredMixin, CreateView):
+class TaskCreate(PermissionRequiredMixin, CreateView):
     template_name = 'task/create.html'
     model = Tracker
     form_class = TaskForm
     context_object_name = 'tasks'
+    permission_required = 'webapp.add_tracker'
+
+    def has_permission(self):
+        project =get_object_or_404(Project, pk=self.kwargs['pk'])
+        return super().has_permission() and self.request.user in project.users.all()
 
     def form_valid(self, form):
         print(self.kwargs.get('pk'))
@@ -53,24 +58,30 @@ class TaskCreate(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.kwargs.get('pk')})
 
-class TaskEdit(LoginRequiredMixin, UpdateView):
+class TaskEdit(PermissionRequiredMixin, UpdateView):
     form_class = TaskForm
     template_name = 'task/task_edit.html'
     model = Tracker
     context_object_name = 'tasks'
+    permission_required = 'webapp.change_tracker'
 
     def has_permission(self):
-        return self.request.user.has_perm('webapp.change_tracker') or self.get_object().users == self.request.user
+        return super().has_permission() and self.request.user in self.get_object().project.users.all()
 
     def get_success_url(self):
         return reverse('webapp:project_view', kwargs={'pk': self.object.project.pk})
 
 
-class TaskDelete(LoginRequiredMixin, DeleteView):
+class TaskDelete(PermissionRequiredMixin, DeleteView):
     template_name = 'task/task_delete.html'
     model = Tracker
     context_object_name = 'task'
     redirect_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.delete_tracker'
+
+
+    def has_permission(self):
+        return super().has_permission() and self.request.user in self.get_object().project.users.all()
 
     def test_func(self):
         return self.request.user.has_perm('webapp.delete_tracker') or self.get_object().users == self.request.user
